@@ -18,7 +18,7 @@ npm install -g node-shell-parser
 
 * shellOutput: the string resulting from running your command
 * options.separator: which character separates your tabled data, default is one space.
-* options.skipLines: how mani lines to skip before meeting the columns definition header
+* options.skipLines: how many lines to skip before meeting the columns definition header
 
 ### Usage
 
