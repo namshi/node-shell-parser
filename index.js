@@ -1,16 +1,12 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = function parse(output, options) {
   options = options || {};
   var separator = options.separator || ' ';
   var lines = output.split('\n');
 
   if (options.skipLines > 0) {
-    for (var counter = 1; counter <= options.skipLines; counter++) {
-      lines.shift();
-    }
+    lines.splice(0, options.skipLines);
   }
 
   var headers = lines.shift();
@@ -22,11 +18,11 @@ module.exports = function parse(output, options) {
       var colName = splitHeader[i].trim();
 
       if(colName !== '') {
-          limits.push({ lable: colName, start: headers.indexOf(colName)});
+          limits.push({ label: colName, start: headers.indexOf(colName)});
       }
   }
 
-  var table = _.map(lines, function(line) {
+  var table = lines.map(function(line) {
       if(line){
           var result = {};
 
@@ -36,14 +32,14 @@ module.exports = function parse(output, options) {
               var start = header.start;
               var end = (limits[nextKey]) ? limits[nextKey].start - header.start : undefined;
 
-              result[header.lable] = line.substr(start, end).trim();
+              result[header.label] = line.substr(start, end).trim();
           }
 
           return result;
       }
   });
-
-  (table[table.length] === undefined) && table.pop();
+  
+  table.pop();
 
   return table;
 };
