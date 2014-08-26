@@ -1,6 +1,6 @@
 {
   "name": "node-shell-parser",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Tiny and handy lib for parsing the usual space-separated tables we get as shell commands outputs",
   "main": "index.js",
   "scripts": {
