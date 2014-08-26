@@ -18,7 +18,7 @@ module.exports = function parse(output, options) {
       var colName = splitHeader[i].trim();
 
       if(colName !== '') {
-          limits.push({ label: colName, start: headers.indexOf(colName)});
+          limits.push({label: colName, start: headers.indexOf(colName)});
       }
   }
 
@@ -38,8 +38,9 @@ module.exports = function parse(output, options) {
           return result;
       }
   });
-  
-  table.pop();
+
+  console.log('table: ', table);
+  (table[table.length-1] === undefined) && table.pop();
 
   return table;
 };
