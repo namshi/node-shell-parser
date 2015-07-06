@@ -39,7 +39,6 @@ module.exports = function parse(output, options) {
       }
   });
 
-  console.log('table: ', table);
   (table[table.length-1] === undefined) && table.pop();
 
   return table;
