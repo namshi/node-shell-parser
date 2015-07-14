@@ -29,8 +29,8 @@ module.exports = function parse(output, options) {
           for (var key in limits) {
               var header = limits[key];
               var nextKey = parseInt(key, 10)+1;
-              var start = header.start;
-              var end = (limits[nextKey]) ? limits[nextKey].start - header.start : undefined;
+              var start = (key === '0') ? 0 : header.start;
+              var end = (limits[nextKey]) ? limits[nextKey].start - start : undefined;
 
               result[header.label] = line.substr(start, end).trim();
           }
@@ -39,7 +39,6 @@ module.exports = function parse(output, options) {
       }
   });
 
-  console.log('table: ', table);
   (table[table.length-1] === undefined) && table.pop();
 
   return table;
